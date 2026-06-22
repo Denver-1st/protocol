@@ -12,7 +12,7 @@ References to automation working on this repository are written explicitly as `A
 
 ## PIP Series
 
-The PIPs are ordered by dependency and implementation priority. At this stage, the repository contains only the required PIPs for the minimum interoperable protocol core.
+The PIPs are ordered by dependency and implementation priority. `PIP-00` through `PIP-03` are required for the minimum interoperable protocol core. `PIP-04` is a recommended discovery and display layer.
 
 Read `PIP-00` through `PIP-03` first.
 
@@ -31,6 +31,10 @@ Read `PIP-00` through `PIP-03` first.
 - [PIP-03-dispute-policy.md](./PIP-03-dispute-policy.md)
   - Implementation: `Required`
   - dispute classes, timeout classes, evidence boundary, and resolution modes
+
+- [PIP-04-agent-short-code.md](./PIP-04-agent-short-code.md)
+  - Implementation: `Recommended`
+  - user-friendly agent identification, verification, and discovery using NIP-05 and NIP-19
 
 ## Design Direction
 

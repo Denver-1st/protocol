@@ -14,12 +14,13 @@ When referring to automation working on this repository, use explicit terms such
 
 ## Spec Structure
 
-The active PIP series contains only required PIPs for the minimum interoperable core:
+The active PIP series contains the required PIPs for the minimum interoperable core plus one recommended discovery layer:
 
 - `PIP-00-agent-definition.md`: public agent capability and discovery record
 - `PIP-01-escrow-descriptor.md`: public escrow declaration referenced by agents and swaps
 - `PIP-02-swap-state-machine.md`: request, transition, evidence, dispute, note, and snapshot event lifecycle
 - `PIP-03-dispute-policy.md`: dispute classes, timeout classes, evidence boundary, and resolution modes
+- `PIP-04-agent-short-code.md`: user-friendly agent identification, verification, and discovery using NIP-05 and NIP-19 (recommended)
 
 Read `README.md` first, then read only the PIPs directly relevant to the requested change.
 
