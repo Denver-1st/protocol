@@ -9,7 +9,7 @@
   - [PIP-00-agent-definition.md](./PIP-00-agent-definition.md)
   - [PIP-02-swap-state-machine.md](./PIP-02-swap-state-machine.md)
 
-## Purpose
+   ## Purpose
 
 This document defines the agent short code: a compact, human-friendly identifier that lets users discover, verify, and share Pontmore agents without handling raw pubkeys.
 
@@ -20,14 +20,14 @@ The short code reuses two existing Nostr standards:
 
 The short code is a discovery and display surface. It does not replace the pubkey as canonical agent identity.
 
-## Core Rule
+   ## Core Rule
 
 - **the Nostr pubkey is the canonical agent identity**
 - **the short code is a verified alias for discovery, display, and sharing**
 
 Clients MUST always follow the pubkey, not the short code. If a short code ever resolves to a different pubkey, clients MUST NOT silently replace a previously established agent reference. The short code is an entry point, not a persistent identity.
 
-## Short Code Format
+   ## Short Code Format
 
 A short code is a NIP-05 internet identifier:
 
@@ -47,11 +47,11 @@ The full NIP-05 character set is permitted. For agent short codes, handles SHOUL
 
 These constraints are recommendations for memorability and consistent display, not a hard restriction on the NIP-05 charset. Clients MUST accept any valid NIP-05 identifier.
 
-### Domain Root
+   ### Domain Root
 
 A short code MAY use the NIP-05 root form `_@<domain>`, in which case clients SHOULD display it as just `<domain>`.
 
-## Declaration
+   ## Declaration
 
 The short code is declared through two cooperating events. No new event kind is introduced.
 
@@ -69,7 +69,7 @@ The agent's kind 0 profile event SHOULD include a `nip05` field set to the short
 
 This is standard NIP-05. The kind 0 event is the primary verification anchor for the short code.
 
-### Agent Definition Event
+   ### Agent Definition Event
 
 The agent definition event defined in [PIP-00](./PIP-00-agent-definition.md) SHOULD reference the short code in two places:
 
@@ -87,7 +87,7 @@ The agent definition event defined in [PIP-00](./PIP-00-agent-definition.md) SHO
 
 The `short_code` content field is the canonical declaration on the agent definition. The `nip05` tag is an index and discovery aid. Clients MUST NOT treat a `nip05` tag as authoritative unless the same value is present in `content.short_code`.
 
-## Resolution
+   ## Resolution
 
 To resolve a short code to a canonical agent, a client SHOULD:
 
@@ -103,7 +103,7 @@ If any verification step fails, the client MUST treat the short code as unverifi
 
 The `.well-known/nostr.json` response MAY include a `relays` map as described in NIP-05. Clients SHOULD use the listed relays as hints for fetching the agent's profile, agent definition, and relay list.
 
-### Multiple Agent Profiles
+   ### Multiple Agent Profiles
 
 An identity may publish multiple agent definitions with different `d` tags, as described in [PIP-00](./PIP-00-agent-definition.md). A short code resolves to one pubkey. The short code does not select a specific `d` tag.
 
@@ -124,7 +124,7 @@ Clients MAY also share the short code directly. The two forms serve different co
 
 Neither form replaces the hex pubkey as the canonical identifier used in protocol events.
 
-## Display
+   ## Display
 
 Clients that support short codes SHOULD:
 
@@ -134,13 +134,13 @@ Clients that support short codes SHOULD:
 
 Clients MUST NOT present an unverified short code as if it were confirmed by DNS lookup.
 
-## Use in Swap Events
+   ## Use in Swap Events
 
 Swap request events defined in [PIP-02](./PIP-02-swap-state-machine.md) identify participants by pubkey. The short code is not used inside swap content as a participant identifier.
 
 A short code MAY appear in a human-readable note event (kind `7304`) or in client UI as a display label for an agent referenced by pubkey. The swap state machine itself MUST use pubkeys for all normative participant references.
 
-## Verification Boundary
+   ## Verification Boundary
 
 Short code verification is a discovery-time check, not a protocol-state fact. Specifically:
 
@@ -150,7 +150,7 @@ Short code verification is a discovery-time check, not a protocol-state fact. Sp
 
 Trust and capability assertions remain the responsibility of [PIP-00](./PIP-00-agent-definition.md), [PIP-01-escrow-descriptor.md](./PIP-01-escrow-descriptor.md), and [PIP-03-dispute-policy.md](./PIP-03-dispute-policy.md).
 
-## Open Questions
+   ## Open Questions
 
 - Whether a Pontmore-specific well-known path or response shape is needed beyond standard NIP-05, or whether plain NIP-05 is sufficient for all agent discovery cases.
 - Whether short codes should support a Pontmore-native suffix or tag to distinguish agent handles from general Nostr handles in mixed directories.
